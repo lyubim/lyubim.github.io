@@ -21,7 +21,10 @@
             height: 100%; /* обеспечиваем, что body и html занимают всю высоту */
             transition: background-color 0.3s ease;
         }
-
+        a {
+            /* text-decoration: none; */
+            color: #000;
+        }
         .container {
             display: flex;
             flex-direction: column;
@@ -134,7 +137,7 @@
         <div class="content" id="content">
             <div id="svgWrapper"></div>
         </div>
-        <div class="subtitle" id="subtitle">From friends with best wishes <br> 2024 <a href="./Enhanser-Regular.otf">Download</a></div>
+        <div class="subtitle" id="subtitle">From friends with best wishes <br> 2024<br> <a href="./Enhanser-Regular.otf" id="download">Download</a></div>
         <div class="cat" id="example"></div>
     </div>
 
@@ -788,6 +791,7 @@
         const title = document.getElementById('title');
         const subtitle = document.getElementById('subtitle');
         const exampleDiv = document.getElementById('example');
+        const download = document.getElementById('download');
         let vw = window.innerWidth;
         let vh = window.innerHeight; // Получаем высоту окна браузера
         let cursorX = 0;
@@ -852,6 +856,7 @@
             document.body.style.backgroundColor = colorScheme.background;
             title.style.color = colorScheme.title;
             subtitle.style.color = colorScheme.subtitle;
+            download.style.color = colorScheme.label;
             const labels = document.querySelectorAll('.svg-label');
             labels.forEach(label => {
                 label.style.color = colorScheme.label;
