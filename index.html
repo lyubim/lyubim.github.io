@@ -3,559 +3,348 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Lyubim Koltakov</title>
-    <meta name="description" content="Art Director & Senior Digital Designer based in Belgrade, Serbia" />
+    <meta name="description" content="Senior Product Designer based in London, UK">
+    <link rel="canonical" href="https://koltakov.com/">
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://koltakov.com/">
+    <meta property="og:title" content="Lyubim Koltakov">
+    <meta property="og:description" content="Senior Product Designer based in London, UK">
+    <meta property="og:image" content="https://koltakov.com/images/photo.jpg">
+    <meta property="og:image:width" content="800">
+    <meta property="og:image:height" content="800">
+    <meta name="twitter:card" content="summary">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
     <style>
-        * {box-sizing: border-box;}
+        * {
+            box-sizing: border-box;
+        }
 
-        body {
-            background: rgb(0,0,0);
-            /* background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(255,255,255,1) 100%); */
-            color:white; 
-            margin: 1% auto;
-            width: 98%;
-            margin-top: 20px;
-        }
-        section {
-
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr; 
-
-            grid-auto-rows: minmax(60px, auto);
-            grid-column-gap: 40px;
-     
-            
-        }
-        img {
-            display: block;
-            width: 100%;
-            /* height: 100%; */
-            object-fit: cover;
-            grid-column-start: 1;
-            grid-column-end: 2;
-            grid-row-start: 1;
-            grid-row-end: 3;
-            border-radius: 8px;
-            position: -webkit-sticky; /* Safari */
-            position: sticky;
-            top: 2%;
-
-        }
-        h1 {
-            justify-self: start;
-        }
-        h1, h2, li, p{
-            font-size: 1.2em;
-            font-weight: normal;
-            font-family: 'Inter', sans-serif;
-        }
-        h1, h2, ul, li, p {
-            list-style: none;
-            padding: 0;
+        h1, h2, h3, p, ul {
             margin: 0;
+            padding: 0;
+            font: inherit;
         }
-        /* h1 {
-            font-family: serif;
-        } */
-       
+
+        ul {
+            list-style: none;
+        }
+
         a {
-            color: #fff; 
+            color: #fff;
             text-decoration: none;
             mix-blend-mode: difference;
-
         }
- 
-        .about {
-            grid-column-start: 2;
-            grid-column-end: 3;
-            position: -webkit-sticky; /* Safari */
+
+        body {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            grid-template-rows: repeat(2, minmax(60px, auto));
+            column-gap: 40px;
+            width: 98%;
+            margin: 20px auto 1%;
+            background: #000;
+            color: #fff;
+            font: 1.2rem Inter, sans-serif;
+        }
+
+        /* Header: its items sit in the body grid so they stay pinned along the whole page */
+
+        header {
+            display: contents;
+        }
+
+        header img, h1 {
             position: sticky;
             top: 2%;
-
-        }
-        .skill {
-            grid-column-start: 3;
-            grid-column-end: 5;
-
         }
 
-        ul.contacts {
-            grid-column-start: 5;
-            grid-column-end: 7;
-            justify-self: end;
-            
-  
-        }
-        ul.contacts li  {
-            padding-left: 8px;
-            display: inline;
-            
-        }
-        .projects {
-            grid-column-start: 3;
-            grid-column-end: 7;
-            grid-row-start: 3;
-            display: grid;
-            grid-template-columns: 0.5fr 1fr 1fr;
-            grid-row-gap: 40px;
-            grid-column-gap: 24px;
-        }
-        .projects h2 {
-            grid-column-start: 1;
-            grid-column-end: 2;
-            
-        }
-      
-        .skills {
-            grid-column-start: 3;
-            grid-column-end: 5;
-            grid-row-start: 7;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: 40px 1fr;
-            grid-row-gap: 40px;
-            grid-column-gap: 24px;
-            
-
-        }
-        .skills h2.title {
-            grid-column-start: 1;
-            grid-column-end: 3;
-            grid-row-start: 1;
-
-            border-top: 1px solid white;
-            padding-top: 12px;
-        }
-        .list {           
-            grid-column-start: 1;
-            grid-column-end: 3;
-        }
-
-        .skills ul li {
-            padding-bottom: 8px;
-        }
-        .tools {
-            grid-column-start: 7;
-            grid-column-end: 5;
-            grid-row-start: 7;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: 40px 1fr;
-            grid-row-gap: 40px;
-
-            
-
-        }
-        .tools h2.title {
-            grid-column-start: 1;
-            grid-column-end: 5;
-            border-top: 1px solid white;
-            padding-top: 12px;
-            
-        }
-        .tools ul li {
-            padding-bottom: 8px;
-            justify-self: start;
-        }
-        .clients {
-            grid-column-start: 3;
-            grid-column-end: 7;
-            grid-row-start: 5;
-            display: grid;
-            grid-template-columns: 1fr;
-            grid-row-gap: 40px;
-            grid-column-gap: 24px;
-        }
-        .education {
-            grid-column-start: 3;
-            grid-column-end: 7;
-            grid-row-start: 9;
-            display: grid;
-            grid-template-columns: 1fr;
-            grid-row-gap: 20px;
-            grid-column-gap: 24px;
-        }
-        .copy {
-            grid-column-start: 3;
-            grid-column-end: 7;
-            grid-row-start: 12;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-       
-            border-top: 1px solid white;
-            justify-content:space-around;
-
-        }
-        .copy p {
-              filter: saturate(0%) grayscale(0%) brightness(50%);
-  /* filter: saturate(0%) brightness(50%); */
-            color: #fff;
-            grid-column-start: 2;
-            grid-column-end: 3;
-            padding-top: 12px;
-            justify-self: end;
-        }
-        .copy h2.title {
-            grid-column-start: 1;
-            grid-column-end: 2;
-      
-      padding-top: 12px;
-  }
-        .education h2.title {
-      
-        border-top: 1px solid white;
-        padding-top: 12px;
-    }
-
-    .education p {
-        width: 95%;
-        line-height: 160%;
-    }
-        .clients h2.title {
-      
-        border-top: 1px solid white;
-        padding-top: 12px;
-        }
-        .clients p {
-            font-size: 3em;
-        }
-
-
-
-        .projects h2.title {
-            grid-column-start: 1;
-            grid-column-end: 5;
-            border-top: 1px solid white;
-            /* mix-blend-mode: difference; */
-            padding-top: 12px;
-        }
-        .projects ul {
-            grid-column-start: 2;
-            grid-column-end: 5; 
-        }
-        .projects ul li {
-            padding-bottom: 12px;
-            border-bottom: 1px solid #222;
-            padding-bottom: 8px;
-            padding-top: 24px;
-            color: dimgrey; 
-            mix-blend-mode: difference;
-        }
-        .projects ul li:first-child {
-            padding-top: 0;
-        }
-        .cta {
-            background: #fff;
-            mix-blend-mode: difference;
-            color: #000;
-            font-size: 2em;
-            text-align: center;
-            font-family: sans-serif;
-            padding: 20px 0;
+        header img {
+            grid-row: 1 / 3;
+            display: block;
+            width: 100%;
+            height: auto;
             border-radius: 8px;
-            width: 30%;
+        }
+
+        .role {
+            grid-column: 3 / 5;
+        }
+
+        .contacts {
+            grid-column: 5 / 7;
+            justify-self: end;
+            align-self: start;
+            display: flex;
+            flex-wrap: wrap;
+            column-gap: 12px;
+            padding-left: 8px;
+        }
+
+        /* Call to action */
+
+        .cta {
             position: fixed;
             bottom: 2%;
+            width: 30%;
+            padding: 20px 0;
+            border-radius: 8px;
+            background: #fff;
+            color: #000;
+            font-family: sans-serif;
+            font-size: 2rem;
+            text-align: center;
         }
+
         .cta:hover {
             opacity: 50%;
         }
-        /* .bg {
-            background: rgb(0,0,0);
-            background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(255,255,255,1) 100%);
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: -1;
-        } */
 
-        .mobile {
-            display: none;
+        /* Content */
+
+        main {
+            grid-area: 3 / 3 / auto / -1;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: subgrid;
+            row-gap: 60px;
         }
+
+        section {
+            grid-column: 1 / -1;
+            display: grid;
+            align-content: start;
+            row-gap: 40px;
+        }
+
+        h2 {
+            border-top: 1px solid #fff;
+            padding-top: 12px;
+        }
+
+        /* Year column: 0.5fr of a 2.5fr grid that has three 24px gaps */
+        .experience {
+            grid-template-columns: calc(20% - 14.4px) 1fr;
+            column-gap: 24px;
+        }
+
+        .experience h2 {
+            grid-column: 1 / -1;
+        }
+
+        .experience h3 {
+            grid-column: 1;
+        }
+
+        .experience ul {
+            grid-column: 2;
+        }
+
+        .experience li {
+            padding: 24px 0 8px;
+            border-bottom: 1px solid #222;
+            color: dimgrey;
+            mix-blend-mode: difference;
+        }
+
+        .experience li:first-child {
+            padding-top: 0;
+        }
+
+        .clients p {
+            font-size: 3rem;
+        }
+
+        .expertise {
+            grid-column: 1 / 3;
+        }
+
+        .tools {
+            grid-column: 3 / 5;
+        }
+
+        .expertise h2, .tools h2 {
+            height: 40px;
+        }
+
+        .lists li {
+            padding-bottom: 8px;
+        }
+
+        .education {
+            row-gap: 20px;
+        }
+
+        .education p {
+            width: 95%;
+            line-height: 160%;
+        }
+
+        /* Footer */
+
+        footer {
+            grid-area: 4 / 3 / auto / -1;
+            display: flex;
+            justify-content: space-between;
+            min-height: 60px;
+            margin-top: 120px;
+            padding-top: 12px;
+            border-top: 1px solid #fff;
+        }
+
+        .heart {
+            filter: saturate(0%) brightness(50%);
+        }
+
         @media (max-width: 650px) {
             body {
+                grid-template-columns: 1fr;
+                grid-template-rows: none;
+                row-gap: 60px;
                 width: 90%;
-                margin-top: 20px;
+                font-size: 1rem;
             }
-            h2, li, p{
-                font-size: 1em;
-            }
-            .mobile {
-                display: block;
-                grid-column-start: 1;
-                grid-column-end: 5;
-                grid-row-start: 1;
 
+            header {
                 display: grid;
-                grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-                grid-row-gap: 24px;
-                grid-column-gap: 12px;
+                grid-template-columns: repeat(6, 1fr);
+                column-gap: 12px;
             }
-            .mobile img {
-                grid-column-start: 1;
-                grid-column-end: 5;
-                width: 100%;
 
+            header img, h1 {
+                position: static;
             }
-            .details {
-                grid-column-start: 1;
-                grid-column-end: 7;
-                grid-row-start: 3;    
-            }
-            .mobile h1 {
-                font-size: 1.5em;
-                margin-bottom: 8px;
-           
-            }
-            .mobile p {
 
+            header img {
+                grid-column: 1 / 5;
+                grid-row: auto;
                 margin-bottom: 24px;
             }
-            .mobile ul {
-     
+
+            h1 {
+                grid-column: 1 / -1;
                 margin-bottom: 8px;
-            }
-            .mobile ul.social {
-                grid-row-start: 6; 
-            }
-            .mobile ul.social li {
-                display: inline-block;
-                padding-right: 8px;
+                font-size: 1.5rem;
             }
 
-            section {
-            
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr; 
-
-            grid-auto-rows: minmax(40px, auto);
-            grid-column-gap: 20px;
-            grid-row-gap: 60px;
-
+            .role {
+                grid-column: 1 / -1;
+                margin-bottom: 24px;
             }
-            .hide {
-                display: none;
+
+            .contacts {
+                grid-column: 1 / -1;
+                justify-self: stretch;
+                gap: 8px 12px;
+                margin-bottom: 8px;
+                padding-left: 0;
             }
-            img {
-                display: block;
 
-                object-fit: cover;
-                grid-column-start: 1;
-                grid-column-end: 2;
-                grid-row-start: 1;
-                grid-row-end: 3;
+            .contacts .email {
+                order: 1;
+                width: 100%;
+            }
 
+            .cta {
+                grid-row: 3;
                 position: static;
-
-
-            }
-            .about {
-                grid-column-start: 2;
-                grid-column-end: 5;
-                grid-row-start: 1;
-                grid-row-end: 3;
-                position: static;
-                display: none;
-            }
-            .skill {
-                grid-column-start: 2;
-                grid-column-end: 5;
-                grid-row-start: 2;
-                grid-row-end: 3;
-                display: none;
-
-            }
-            ul.contacts {
-                grid-column-start: 1;
-                grid-column-end: 5;
-                grid-row-start: 4;
-                justify-self: left;
-                display: none;
-    
-            }
-            ul.contacts li  {
-                padding-left: 0px;
-                padding-right: 20px;
-                display: inline;
+                width: 100%;
             }
 
-            .skills {
-                grid-column-start: 1;
-                grid-column-end: 5;
-                grid-row-start: 4;
-                display: grid;
-
-                grid-row-gap: 36px;
-                
-
+            main, footer {
+                grid-area: auto / 1 / auto / -1;
             }
-            .tools {
-                grid-column-start: 1;
-                grid-column-end: 5;
-                grid-row-start: 5;
-                display: grid;
 
-                grid-row-gap: 36px;
-                
-
+            main {
+                grid-template-columns: 1fr;
             }
-            .list {
+
+            section, .education {
+                row-gap: 36px;
+            }
+
+            .experience {
+                grid-template-columns: 1fr 2fr;
+                column-gap: 0;
+            }
+
+            .experience li {
+                padding-top: 20px;
+            }
+
+            .clients p {
+                font-size: 2rem;
+            }
+
+            .expertise, .tools {
+                grid-column: 1 / -1;
+            }
+
+            .lists {
                 display: grid;
                 grid-template-columns: 1fr 1fr;
-                grid-row-gap: 16px;
             }
-            .clients {
-                grid-column-start: 1;
-                grid-column-end: 5;
-                grid-row-start: 3;
-                display: grid;
-                grid-template-columns: 1fr;
-                grid-row-gap: 36px;
-                grid-column-gap: 24px;
-            }
-            .clients p {
-                font-size: 2em;
-            }
-            .education {
-                grid-column-start: 1;
-                grid-column-end: 5;
-                grid-row-start: 6;
-                display: grid;
-                grid-template-columns: 1fr;
-                grid-row-gap: 36px;
-                grid-column-gap: 24px;
-            }
-            .copy {
-                grid-column-start: 1;
-                grid-column-end: 5;
-                grid-row-start: 8;
-                display: grid;
-                grid-template-columns: 1fr;
-                grid-row-gap: 40px;
-                grid-column-gap: 24px;  
-            }
-            .cta {
-                grid-column-start: 1;
-                grid-column-end: 5;
-                grid-row-start: 7;
-                width: 100%;
-                position: static;
-            }
-            .projects {
-                grid-column-start: 1;
-                grid-column-end: 5;
-                grid-row-start: 2;
-                display: grid;
-                grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-                grid-row-gap: 36px;
-                grid-column-gap: 0px;
 
-            }
-            .projects h2 {
-                grid-column-start: 1;
-                grid-column-end: 3;
-                
-            }
-            .projects h2.title {
-                grid-column-start: 1;
-                grid-column-end: 7;
-                border-top: 1px solid white;
-                padding-top: 12px;
-            }
-            .projects ul {
-                grid-column-start: 3;
-                grid-column-end: 7; 
-                
-            }
-            .projects ul li {
-                padding-top: 20px;
-                border-bottom: 1px solid #222;
-    
-                color: dimgrey; 
-
-            }
-            .projects ul li:first-child {
-                padding-top: 0;
+            footer {
+                min-height: 40px;
+                margin-top: 0;
             }
         }
-
     </style>
 </head>
 <body>
-   
-    
-    <section>
+    <a rel="nofollow" href="mailto:lyubim@koltakov.com" class="cta">Get In Touch</a>
 
-        <div class="mobile">
-            <img src="/images/photo.jpg" alt="Lyubim Koltakov">
-            <div class="details">
-                <h1>Lyubim Koltakov</h1>
-                <p>Art Director & Senior&nbsp;Digital Designer<br> <span>based in Belgrade, Serbia</span></p>
-
-                <ul class="social">
-
-                    <li><a href="https://www.instagram.com/llyubim/">Instagram</a></li>
-                    <li><a href="https://www.facebook.com/llyubim/">Facebook</a></li>
-                </ul>
-                <ul>
-                    <li><a rel="nofollow" href="mailto:lyubim@koltakov.com">lyubim@koltakov.com</a></li>
-                </ul>
-
-            </div>
-
-        </div>
-
-        <a rel="nofollow" href="mailto:lyubim@koltakov.com" class="cta">Get In Touch</a>
-        <img class="hide" src="/images/photo.jpg" alt="Lyubim Koltakov">
-        <div class="about">
-            <h1>Lyubim Koltakov</h1>
-        </div>
-    
-        <p class="skill">Art Director & Senior&nbsp;Digital Designer<br> <span>based in Belgrade, Serbia</span></p>
+    <header>
+        <img src="/images/photo.jpg" alt="Lyubim Koltakov" width="800" height="800">
+        <h1>Lyubim Koltakov</h1>
+        <p class="role">Senior&nbsp;Product Designer<br>based in London, UK</p>
         <ul class="contacts">
-            <li><a rel="nofollow" href="mailto:lyubim@koltakov.com">lyubim@koltakov.com</a></li>
+            <li class="email"><a rel="nofollow" href="mailto:lyubim@koltakov.com">lyubim@koltakov.com</a></li>
             <li><a href="https://www.instagram.com/llyubim/">Instagram</a></li>
             <li><a href="https://www.facebook.com/llyubim/">Facebook</a></li>
         </ul>
-    
-        <div class="projects">
-            <h2 class="title">Experience: </h2>
-            <h2>2023</h2>
+    </header>
+
+    <main>
+        <section class="experience">
+            <h2>Experience:</h2>
+
+            <h3>2023</h3>
             <ul>
                 <li><a href="https://efim.liberman.net">Efim Liberman: science and life</a></li>
-                <li><a href="https://next.ucraft.com">Ucraft</a>, Promoted to Design Lead</li>
+                <li><a href="https://www.ucraft.net">Ucraft</a>, Promoted to Design Lead</li>
             </ul>
-            <h2>2022</h2>
+
+            <h3>2022</h3>
             <ul>
                 <li><a href="https://b2b.rocketwork.ru">Rocket Work</a></li>
                 <li><a href="https://europeanculturalacademy.com">European Cultural Academy</a></li>
-                <li><a href="https://next.ucraft.com">Ucraft</a>, Started Full Time Job as Senior UX/UI Designer</li>
+                <li><a href="https://www.ucraft.net">Ucraft</a>, Started Full Time Job as Senior UX/UI Designer</li>
                 <li>Yandex Sustainability</li>
                 <li>Parabola</li>
             </ul>
-            <h2>2018–2022</h2>
+
+            <h3>2018–2022</h3>
             <ul>
                 <li><a href="https://sulliwan.com">Sulliwan Studio</a>, Lead&nbsp;Designer</li>
             </ul>
-            <h2>2021</h2>
+
+            <h3>2021</h3>
             <ul>
                 <li><a href="https://bolshoi.ru/">Bolshoi Theatre</a></li>
                 <li><a href="https://i-m-i.ru/">IMI</a></li>
-                <li><a href="https://danceinversion.ru/">Dance  Inversion</a></li>
+                <li><a href="https://danceinversion.ru/">Dance Inversion</a></li>
                 <li>Course about digital design and design systems for MTS Design Unit</li>
                 <li>Cloudset</li>
                 <li>Yandex One Day Offer</li>
-                
             </ul>
 
-            <h2>2020</h2>
+            <h3>2020</h3>
             <ul>
                 <li>Sber Salut for Hotels</li>
                 <li>Simple App</li>
@@ -565,7 +354,7 @@
                 <li>World Chess + MTS</li>
             </ul>
 
-            <h2>2019</h2>
+            <h3>2019</h3>
             <ul>
                 <li><a href="https://sulliwan.com">Sulliwan Studio Portfolio</a></li>
                 <li><a href="https://zimininstitutes.org">Zimin Institutes</a></li>
@@ -575,46 +364,50 @@
                 <li>Navigation App for tractors</li>
                 <li>Moscow Film School</li>
             </ul>
-            <h2>2018</h2>
+
+            <h3>2018</h3>
             <ul>
-                <li><a href="https://perushevandkhmelev.com">Perushev & Khmelev</a></li>
+                <li><a href="https://perushevandkhmelev.com">Perushev &amp; Khmelev</a></li>
                 <li><a href="https://u.university">Universal University</a></li>
                 <li>Impossible Is Inevitable Exhibition</li>
             </ul>
-            <h2>2010–2018</h2>
+
+            <h3>2010–2018</h3>
             <ul>
-                <li><a href="https://ukit.com">Ucoz & Ukit Website Builders</a>, Product&nbsp;Designer</li>
+                <li><a href="https://ukit.com">Ucoz &amp; Ukit Website Builders</a>, Product&nbsp;Designer</li>
             </ul>
-            <!-- <div class="bg"></div> -->
-        </div>
-        <div class="clients">
-            <h2 class="title">Clients: </h2>
+        </section>
+
+        <section class="clients">
+            <h2>Clients:</h2>
             <p>Bolshoi Theatre, Sber, Yandex, Strelka Institute, MTS, Beat Film Festival, Universal University, Jewish Museum, Tretyakov Gallery</p>
-        </div>
-        <div class="skills">
-                <h2 class="title">Expertise:</h2>
-                <div class="list">
-                    <ul>
-                        <li>— Art Direction</li>
-                        <li>— Design Management</li>
-                        <li>— UI/UX Design</li>
-                        <li>— Graphic Design</li>
-                        <li>— Motion Design</li>
-                        <li>— Product Design</li>
-                    </ul>
-                    <ul>
-                        <li>— Design Systems</li>
-                        <li>— Presentaion</li>
-                        <li>— Web Development</li>
-                        <li>— Analytics</li>
-                        <li>— Prototyping</li>
-                        <li>— Augmented Reality</li>
-                    </ul>
+        </section>
+
+        <section class="expertise">
+            <h2>Expertise:</h2>
+            <div class="lists">
+                <ul>
+                    <li>— Art Direction</li>
+                    <li>— Design Management</li>
+                    <li>— UI/UX Design</li>
+                    <li>— Graphic Design</li>
+                    <li>— Motion Design</li>
+                    <li>— Product Design</li>
+                </ul>
+                <ul>
+                    <li>— Design Systems</li>
+                    <li>— Presentation</li>
+                    <li>— Web Development</li>
+                    <li>— Analytics</li>
+                    <li>— Prototyping</li>
+                    <li>— Augmented Reality</li>
+                </ul>
             </div>
-        </div>
-        <div class="tools">
-            <h2 class="title">Tools: </h2>
-            <div class="list">
+        </section>
+
+        <section class="tools">
+            <h2>Tools:</h2>
+            <div class="lists">
                 <ul>
                     <li>— Illustrator</li>
                     <li>— Photoshop</li>
@@ -624,124 +417,36 @@
                     <li>— Sketch</li>
                 </ul>
                 <ul>
-                    
                     <li>— Readymag</li>
                     <li>— Webflow</li>
                     <li>— Cinema 4D, Blender</li>
                     <li>— Principle, Protopie</li>
                     <li>— HTML, CSS, JS, GIT</li>
                 </ul>
-        </div>
-        </div>
-        
+            </div>
+        </section>
 
+        <section class="education">
+            <h2>Education:</h2>
+            <p>Bauman Moscow State Technical University, British Higher School of Art &amp; Design, Ilya Birman’s course — "User Interface and Presentation of Information", Strelka Institute for Media, Architecture and Design workshop — "Storyboarding: tips, tools and techniques", Wild Studio workshop — "Digital Branding".</p>
+        </section>
+    </main>
 
-        </div>
-        <div class="education">
-            <h2 class="title">Education: </h2>
-            <p>Bauman Moscow State Technical University, British Higher School of Art & Design, Ilya Birman’s course — "User Interface and Presentation of Information", Strelka Institute for Media, Architecture and Design workshop — "Storyboarding: tips, tools and techniques", Wild Studio workshop — "Digital Branding".</p>
-        </div>
-        <div class="copy">
-            <h2 class="title">2023. v1.4</h2>
-            <p>♥</p>
-        </div>
-    </section>
-     <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-82044650-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <footer>
+        <p>2026. v1.5</p>
+        <p class="heart">♥</p>
+    </footer>
 
-  gtag('config', 'UA-82044650-1');
-</script>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6X6B1GMTR2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
- 
-    <!-- spotlights & highlights 💡-->
-    <!-- <script>
-        function setup() {
-        createCanvas(windowWidth, windowHeight, WEBGL);
-        specularMaterial(100);
-        noStroke();
-        angleMode(DEGREES);
-    }
-    function draw() {
-        background(0);
-        // orbitControl();
-        t = frameCount;
-        rotateX(t);
-        rotateY(t);
-        pointLight(70, 70, 70, 0, 400, 2000);
-        torus(min(width / 4, height / 4), 10, 50, 24);
-        push();
-        translate(0, 0, 500 * sin(t) * cos(t));
-        sphere(min(width / 10, height / 10), 24, 24);
-        pop();
-    }
-
-
-    </script> -->
-
-
-
-
-
-
-
-
-
-    <!-- <section>
-        <div class="wrapper">
-    <img src="http://koltakov.com/imgs/photo.jpg" alt="Lyubim Koltakov">
-    <h1>Lyubim Koltakov <br> Senior&nbsp;Digital&nbsp;Designer</h1>
-    <ul class="contact">
-        <li><a rel="nofollow" href="mailto:lyubim@koltakov.com">lyubim@koltakov.com</a></li>
-        <li><a href="https://www.instagram.com/llyubim/">Instagram</a></li>
-        <li><a href="https://www.facebook.com/llyubim/">Facebook</a></li>
-    </ul>
-    
-
-    <h2 class="projects">Projects:</h2>
-    <h2>2021</h2>
-    <ul>
-        <li><a href="https://thecloudset.com">Cloudset</a></li>
-    </ul>
-
-
-    <h2>2020</h2>
-    <ul>
-        <li>Sber Salut for Hotels</li>
-        <li>Simple App</li>
-        <li>Shared Easy</li>
-        <li><a href="https://beatfilmfestival.ru">Beat Film Festival</a>
-            <span>
-                <svg width="29" height="23" viewBox="0 0 29 23" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 11.5H28M28 11.5L18.2 1M28 11.5L18.2 22" stroke="white"/></svg>
-        </span></li>
-    </ul>
-
-    <h2>2019</h2>
-    <ul>
-        <li><a href="https://sulliwan.com">Sulliwan Studio Portfolio</a></li>
-        <li><a href="https://zimininstitutes.org">Zimin Institutes</a></li>
-        <li><a href="https://архитекторы.рф">Architects Of Russia</a></li>
-        <li>Welps App</li>
-        <li>Navigation App for tractors</li>
-    </ul>
-    <h2>2018</h2>
-    <ul>
-        <li><a href="https://perushevandkhmelev.com">Perushev & Khmelev</a></li>
-        <li><a href="https://u.university">Universal University</a></li>
-        <li>Impossible Is Inevitable Exhibition</li>
-    </ul>
-    <h2>2010–2018</h2>
-    <ul>
-        <li><a href="https://ukit.com">Ucoz & Ukit Website Builders</a>, Product&nbsp;Designer</li>
-    </ul>
-</div>
-    </section> -->
-
-
+        gtag('config', 'G-6X6B1GMTR2');
+    </script>
 </body>
 </html>
 
-<!-- UPDATED 20.05.2025 -->
+<!-- UPDATED 02.11.2026 -->
