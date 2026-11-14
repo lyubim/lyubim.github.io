@@ -249,10 +249,17 @@
                 width: 100%;
             }
 
+            /* Pinned to the bottom of the screen from the start; body padding keeps the footer clear of it */
+            body {
+                padding-bottom: 100px;
+            }
+
             .cta {
-                grid-row: 3;
-                position: static;
-                width: 100%;
+                left: 5%;
+                bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+                z-index: 1;
+                width: 90%;
+                mix-blend-mode: normal;
             }
 
             main, footer {
